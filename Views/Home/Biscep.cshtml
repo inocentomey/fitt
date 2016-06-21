@@ -1,0 +1,331 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 7 ]>    <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en-gb" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--[if lt IE 9]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Fitt-Raho | Biscep </title>
+    <meta name="description" content="">
+    <meta name="author" content="Themesrefinery">
+    <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+            <script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <!--<link rel="stylesheet" href="~/Content/styles.css" />-->
+    <!-- Animation -->
+    <!-- Font Awesome -->
+    <!--Slider CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/slider.css">
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/custom.css">
+
+    <script src="~/Scripts/jquery-2.2.3.js"></script>
+    <style>
+        .color{
+            background-color: #93d783;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+        .btn {
+            background: #63d934;
+            background-image: -webkit-linear-gradient(top, #63d934, #b8632b);
+            background-image: -moz-linear-gradient(top, #63d934, #b8632b);
+            background-image: -ms-linear-gradient(top, #63d934, #b8632b);
+            background-image: -o-linear-gradient(top, #63d934, #b8632b);
+            background-image: linear-gradient(to bottom, #63d934, #b8632b);
+            -webkit-border-radius: 11;
+            -moz-border-radius: 11;
+            border-radius: 11px;
+            text-shadow: 1px 1px 28px #666666;
+            -webkit-box-shadow: 0px 1px 3px #d16bd1;
+            -moz-box-shadow: 0px 1px 3px #d16bd1;
+            box-shadow: 0px 1px 3px #d16bd1;
+            font-family: Georgia;
+            color: #ffffff;
+            font-size: 14px;
+            padding: 10px 20px 10px 20px;
+            border: solid #1f8c2b 2px;
+            text-decoration: none;
+        }
+
+            .btn:hover {
+                background: #3cfa88;
+                text-decoration: none;
+            }
+    </style>
+    <script type="text/javascript">
+        function getdata(value){
+            $(document).ready(function () {
+           
+                //alert($("#"+value).attr('value'));
+                var e = $("#"+value).attr('value');
+                var serviceURL = '/Home/setvalues';
+
+                $.ajax({
+                    type: "Post",
+                    url: serviceURL,
+                    data: { 'userName': e },
+                    success: successFunc,
+                    error: errorFunc
+                });
+
+                function successFunc(data) {
+                    
+                    $("#image1").attr('src', data[0]);
+                    $("#image2").attr('src', data[1]);
+                    $("#video").attr('src', data[2]);
+                    //$("#video").html('<source src='+data[2]+' type="video/mp4"></source>');
+                    
+                }
+                function errorFunc(xhr, status, err) {
+                    alert('Nothing found');
+                }
+                
+           
+            });
+        }
+    </script>
+
+    <!--<script>
+
+
+        var serviceURL = '/Home/getBiscepbtns';
+
+        $.ajax({
+            type: "Post",
+            url: serviceURL,
+            success: successFunc,
+            error: errorFunc
+        });
+
+        function successFunc(data) {
+            var str
+            for (str in data) {
+                var abc = data[str];
+                var objli = $('<li></li>');
+                var objinput = $('<input />');
+                objinput.attr('type', "submit");
+                objinput.addClass("btn");
+                objinput.attr('value', data[str]);
+                //objinput.triggerHandler(getdata(data[str]));
+                objli.append(objinput);
+                $("#biscep").append(objli);
+            }
+            var length = document.getElementById('#biscep').getElementsByTagName('li');
+            alert(length.length);
+        }
+        function errorFunc(xhr, status, err) {
+            alert('Nothing found');
+        }
+
+
+
+
+    </script>-->
+
+
+</head>
+<body>
+    
+
+    
+    <br/><br /><br />   
+    <div class="row">
+        <div class="container">
+            <div class="col-md-3 " >
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default color">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="p banel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Biscep
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                @{
+                                    List<string> list = ViewBag.Biscep;
+                                    <ul id="biscep" class="nav nav-pills nav-stacked">
+                                        @for (int i = 0; i < list.Count; i++)
+                                        {
+                                            string name = list[i];
+                                            string id = "id" + i;
+                                            <li class="color">
+                                                <input type="submit" id=@id class="btn" value=@name onclick=getdata(this.id) />
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                                <!--<ul id="biscep" class="nav nav-pills nav-stacked">
+                                    
+                                    <li class="color">
+                                        <input type="submit" id="bc" class="btn" value="Alternate Hammer Curl" onclick="getdata('Alternate Hammer Curl')" />
+                                    </li>
+                                    <li class="color">
+                                        
+                                        <input type="submit" id="bc" class="btn" value="Alternate Incline Dumbbell Curl" onclick="getdata('Alternate Incline Dumbbell Curl')" />
+                                        
+                                    </li>
+                                    <li class="color">
+                                        <input name="bc" id="bc" type="submit" class="btn" value="Barbell Curl" onclick="getdata('Barbell Curl')" />
+                                        
+                                    </li>
+                                    <li class="color">
+                                        
+                                        <input name="bc" id="bc" type="submit" class="btn" value="Bisceps Curl to Shoulder Press" onclick="getdata('Bisceps Curl to Shoulder Press')" />
+                                        
+                                    </li>
+                                </ul>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Tricep
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Shoudlers
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Chest
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                   Abs
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Legs
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Wings
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-lg-9">
+                
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <div class="panel panel-default ">
+                        <div class="panel-heading" role="tab" id="heading11">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Images
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body top2" >
+                                <img height="300" id="image1" width="350" src="~/Images/Exercises/Biscep/ahc1.jpg" />
+                                <img height="300" id="image2" width="350" src="~/Images/Exercises/Biscep/ahc2.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" role="tab" id="heading11">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Video
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <div class="col-lg-6">
+                                    <div id="divVideo" class="embed-responsive embed-responsive-16by9">
+
+                                        <video controls="controls">
+                                            <source id="video" src="~/Videos/Exercises/Biscep/ahcv.mp4" type="video/mp4" />
+                                        </video>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                
+                
+                
+          </div>
+        </div>
+    </div>
+    <br /><br /><br />
+</body>
+</html>

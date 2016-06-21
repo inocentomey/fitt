@@ -1,0 +1,282 @@
+﻿@model List<FittRaho.Controllers.SelectType>
+@{
+    //ViewBag.Title = "Schedule";
+}
+
+<!DOCTYPE html>
+<!--[if IE 7 ]>    <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en-gb" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--[if lt IE 9]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="">
+    <title>Fitt-Raho | Shedule </title>
+    <meta name="author" content="Themesrefinery">
+    <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+            <script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <!--<link rel="stylesheet" href="~/Content/styles.css" />-->
+    <!-- Animation -->
+    <!-- Font Awesome -->
+    <!--Slider CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/slider.css">
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/custom.css">
+
+    <script src="~/Scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jssor.js" type="text/javascript"></script>
+    <script src="~/Scripts/jssor.slider.js" type="text/javascript"></script>
+    <script src="~/Scripts/slider.js" type="text/javascript"></script>
+    <style>
+        .color {
+            background-color: #93d783;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+        table, th, td {
+            border: 1px solid black;
+            background-color:lightblue
+        } 
+    </style>
+</head>
+<body>
+    
+    <br /><br />
+    <h4>Your Schedule</h4>
+    <hr />
+    <div class="container">
+        <div class="container col-lg-10">
+
+            <table>
+                <tr>
+                    <td id="day1" class="col-lg-1">
+
+                        <label>Day 1</label>
+                        <br />
+                        @Html.DropDownListFor(
+                           x => x[0].id,
+                           Model[0].list)
+                        <br />
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 2</label>
+                        <br />
+                        @Html.DropDownListFor(
+                           x => x[1].id,
+                           Model[1].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 3</label>
+                        <br />
+                        @Html.DropDownListFor(
+                           x => x[2].id,
+                           Model[2].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 4</label>
+                        <br />
+                        @Html.DropDownListFor(
+                           x => x[3].id,
+                           Model[3].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 5</label>
+                        <br />
+                        @Html.DropDownListFor(
+                           x => x[4].id,
+                           Model[4].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 6</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[5].id,
+                                    Model[5].list)
+                    </td>
+                    <td class="col-lg-1 row">
+                        <label>Day 7</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[6].id,
+                                    Model[6].list)
+                    </td>
+
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td class="col-lg-1">
+                        <label>Day 8</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[7].id,
+                           Model[7].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 9</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[8].id,
+                                    Model[8].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 10</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[9].id,
+                                    Model[9].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 11</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[10].id,
+                                    Model[10].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 12</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[11].id,
+                                    Model[11].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 13</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[12].id,
+                                    Model[12].list)
+                    </td>
+                    <td class="col-lg-1 row">
+                        <label>Day 14</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[13].id,
+                                    Model[13].list)
+                    </td>
+
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td class="col-lg-1">
+                        <label>Day 15</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[14].id,
+                                    Model[14].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 16</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[15].id,
+                                    Model[15].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 17</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[16].id,
+                                    Model[16].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 18</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[17].id,
+                                    Model[17].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 19</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[18].id,
+                                    Model[18].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 20</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[19].id,
+                                    Model[19].list)
+                    </td>
+                    <td class="col-lg-1 row">
+                        <label>Day 21</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[20].id,
+                                    Model[20].list)
+                    </td>
+
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td class="col-lg-1">
+                        <label>Day 22</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[21].id,
+                                    Model[21].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 23</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[22].id,
+                                    Model[22].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 24</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[23].id,
+                                    Model[23].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 25</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[24].id,
+                                    Model[24].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 26</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[25].id,
+                                    Model[25].list)
+                    </td>
+                    <td class="col-lg-1">
+                        <label>Day 27</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[26].id,
+                                    Model[26].list)
+                    </td>
+                    <td class="col-lg-1 row">
+                        <label>Day 28</label>
+                        <br />
+                        @Html.DropDownListFor(
+                                    x => x[27].id,
+                                    Model[27].list)
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+     
+
+    </div>
+    <br/><br /><br />
+</body>
+</html>
